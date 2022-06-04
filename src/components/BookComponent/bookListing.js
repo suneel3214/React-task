@@ -31,7 +31,7 @@ export default function bookListing() {
   const [bookListData, setBookListData] = useState([]);
   const [small_thumbnail, setSmallthumbnail] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
-  // const { getBookDelete } = useAuth();
+  const { getBookDelete } = useAuth();
   useEffect( () => {
     bookList();
  }, []);
@@ -89,25 +89,6 @@ const handleEditCancel = () => {
   setEditModalVisible(false);
 };
 
-// const BookUpdate = async (data) => {
-  
-//   let updatetData = {
-//     authors: authors,
-//     title: title,
-//     subtitle: subtitle,
-//     small_thumbnail: small_thumbnail,
-//     thumbnail: thumbnail,
-
-//   }
-
-//   console.log("updatetData",updatetData)
-  
-//     await getBookUpdate(updatetData);
-//     await setBookListData(bookListData);
-//     setEditModalVisible(false);
-//     bookList();
-
-// };
 
 const onFinish = (data) => {   
   data.small_thumbnail = small_thumbnail

@@ -2,7 +2,7 @@ import AuthRepository from '../Api/AuthRepository';
 import cookies from "js-cookie";
 
 import React,{useContext, useState} from 'react';
-import { notification } from "antd";
+import { notification} from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import { useHistory } from 'react-router-dom';
 import {UserContext} from '../App';
@@ -39,7 +39,8 @@ export default function useAuth() {
        getUserLogin: async (data) => {   
 
         var responseData = await AuthRepository.UserLogin(data);
-        //  console.log(responseData);
+         var error = responseData.data.error;
+         console.log("error",error)
         if (responseData.status === 200) {
           notification.open({
             message: "Success",
@@ -57,7 +58,7 @@ export default function useAuth() {
           else {
             notification.open({
               message: "Warning",
-              description: "Login Failed...!!",
+              description: error,
               icon: <SmileOutlined style={{ color: "#108ee9" }} />,
             });
             history.push('/login');

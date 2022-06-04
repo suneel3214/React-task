@@ -69,7 +69,7 @@ class AuthRepository {
 
     //   async bookDelete(id) {
     //       console.log("data",id)
-    //     const reponse = await axios.delete(`admin/book/delete/${id}`)
+    //     const reponse = await axios.post(`admin/book/delete/${id}`)
     //     .then((response) => {
     //         return response;
     //     })
