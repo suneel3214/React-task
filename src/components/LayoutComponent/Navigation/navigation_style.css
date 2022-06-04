@@ -1,0 +1,17 @@
+.ant-menu-horizontal > .ant-menu-item a {
+    font-weight: 800 !important;
+    font-size: 20px !important;
+}
+
+.ant-menu-horizontal{
+    line-height: 100px !important;
+}
+
+.list{
+    padding: 0px 51px !important;
+}
+
+.ant-menu-submenu-title .anticon{
+font-size: 40px !important;
+}
+

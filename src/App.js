@@ -1,24 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {createContext, useReducer } from 'react'
+import {
+  BrowserRouter as Router, Route, Switch
+} from "react-router-dom";
+import 'antd/dist/antd.css';
+import Navigation from './components/LayoutComponent/Navigation/Navbar';
+import Home from './components/HomeComponent/index';
+import Register from './components/RegisterComponent/register';
+import Book from './components/BookComponent/book';
+import BookListing from './components/BookComponent/bookListing';
+import Login from './components/LoginComponent/login';
+import { initialState , reducer } from './reducer/UseReducer';
 
-function App() {
+export const UserContext = createContext();
+
+const App = () => {
+
+  const [state ,dispatch] = useReducer(reducer , initialState )
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <>
+    <UserContext.Provider value={{state, dispatch}}>
+         <Router>
+            <Navigation />
+            <Switch>
+              <Route exact path="/"> <Home /></Route>
+              <Route exact path="/register"> <Register /></Route>
+              <Route exact path="/book_register"><Book /></Route>
+              <Route exact path="/login"><Login /></Route>
+              <Route exact path="/book_listing"><BookListing /></Route>
+            </Switch>
+         </Router>
+    </UserContext.Provider>
+    
+    </>
   );
 }
 
