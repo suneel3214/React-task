@@ -13,6 +13,8 @@ import TablePagination from '@mui/material/TablePagination';
 import axios from 'axios';
 import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
+import { CSVLink } from "react-csv";
+
 export default function facultyList() {
 
 const [facultyListing , setFacultyListing] = useState([]);
@@ -33,7 +35,7 @@ const [pincode , setPincode] = useState("");
 const [dept , setDept] = useState("");
 const [image , setImage] = useState("");
 const [loading , setLoading] = useState(false);
-
+const [csvData , setCsvData] = useState([]);
 
 const {getFacultyListing} = useAuth();
 
@@ -55,11 +57,13 @@ const {getFacultyListing} = useAuth();
         useEffect( () =>{
             FacultyList()
         },[])
-
+       
        useEffect( () =>{
         setFacultyListData(facultyListing)
-       },[facultyListing])
+        setCsvData(facultyListing ? facultyListing :'')
 
+       },[facultyListing])
+       
       const FacultyList = async () => {
         var list = await getFacultyListing().then(res=>{
             setFacultyListing(res)
@@ -112,6 +116,53 @@ const {getFacultyListing} = useAuth();
         })
       
       }
+
+      const headers = [
+        {
+          label: "First Name",
+          key: 'name'
+        },
+        {
+          label: "Last Name",
+          key: 'lname'
+        },
+        {
+          label: "Gender",
+          key: 'gender'
+        },
+        {
+          label: "Qualification",
+          key: 'qualification'
+        },
+        {
+          label: "Mobile",
+          key: 'mobile'
+        },
+        {
+          label: "Email",
+          key: 'email'
+        },
+        {
+          label: "Country",
+          key: 'country'
+        },
+        {
+          label: "State",
+          key: 'state'
+        },
+        {
+          label: "City",
+          key: 'city'
+        },
+        {
+          label: "PinCode",
+          key: 'pincode'
+        },
+        {
+          label: "Department",
+          key: 'dept'
+        },
+      ];
   return (
     <>
     <Row style={{padding:'0px 65px'}}>
@@ -119,6 +170,11 @@ const {getFacultyListing} = useAuth();
         <Typography style={{marginTop:"40px",textAlign:"center"}} variant="h4" gutterBottom component="div">
            Faculty List
         </Typography>
+        <div style={{ textAlign: "end",marginBottom:'10px' }}>
+          <CSVLink style={{ textDecoration: 'none' }} data={csvData ? csvData : ''} headers={headers} filename={"facultylist.csv"} >
+            <Button variant="contained">Export</Button>
+          </CSVLink>
+        </div>
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table">
@@ -170,7 +226,9 @@ const {getFacultyListing} = useAuth();
               },
               }}
             >
-         
+              <div style={{textAlign:'center'}}>
+              <img src={`http://localhost:8000/image/${image}`} alt="" style={{width:"80px",height:"80px",borderRadius:'50%'}} />
+              </div><hr />
              <h1>FirstName: &nbsp;&nbsp;&nbsp;&nbsp;<span className='fac-profiile-view'>{name}</span></h1>
              <h1>LastName: &nbsp;&nbsp;&nbsp;&nbsp;<span className='fac-profiile-view'>{lastname}</span></h1>
              <h1>Email: &nbsp;&nbsp;&nbsp;&nbsp;<span className='fac-profiile-view'>{email}</span></h1>
@@ -182,7 +240,6 @@ const {getFacultyListing} = useAuth();
              <h1>State: &nbsp;&nbsp;&nbsp;&nbsp;<span className='fac-profiile-view'>{state}</span></h1>
              <h1>City: &nbsp;&nbsp;&nbsp;&nbsp;<span className='fac-profiile-view'>{city}</span></h1>
              <h1>Pin-Code: &nbsp;&nbsp;&nbsp;&nbsp;<span className='fac-profiile-view'>{pincode}</span></h1>
-             <img src={`http://localhost:8000/image/${image}`} alt="" style={{width:"80px",height:"80px",borderRadius:'50%'}} />
 
             </Modal>
             <TablePagination
