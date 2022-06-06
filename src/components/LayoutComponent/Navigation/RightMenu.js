@@ -63,6 +63,12 @@ const RenderMenu = () => {
           <Link to="/book_listing">BookListing</Link>
         </Menu.Item>
         <Menu.Item  className='list'>
+          <Link to="/facutly">Add Faculty</Link>
+        </Menu.Item>
+        <Menu.Item  className='list'>
+          <Link to="/facutly_list">FacultyList</Link>
+        </Menu.Item>
+        <Menu.Item  className='list'>
           <Button color="inherit" onClick={showDrawer}>
           Profile
           </Button>
@@ -106,12 +112,12 @@ const RenderMenu = () => {
         <h1>{LocalUserId}</h1>
         <strong style={{fontSize:'20px'}}>Contact: <span>+918516832569</span></strong><br /><br />
         <strong style={{fontSize:'20px'}}>Address: <span> Vijay Nagar Indore (473255)</span></strong><br /><br />
-        <strong style={{fontSize:'20px'}}>About Us: <span>Lorem Ipsum is simply dummy text of
+         <span> <strong style={{fontSize:'20px'}}>About:</strong> Lorem Ipsum is simply dummy text of
           the printing and typesetting industry. Lorem Ipsum has
           been the industry's standard dummy text ever since the 1500s,
           when an unknown printer took a galley of type and scrambled it 
           to make a type specimen book. It has survived not only five centuries,
-        </span></strong>
+        </span>
       </Drawer>
      </>
     );

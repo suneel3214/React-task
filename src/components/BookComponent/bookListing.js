@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { Row, Col , Button ,Modal ,Form, Input,Upload} from 'antd';
+import {Typography } from "@mui/material";
 import { UploadOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { notification } from "antd";
@@ -137,6 +138,9 @@ function deleteUser(id){
     <>
     <Row justify="center">
       <Col span={16}>
+      <Typography style={{marginTop:"40px",textAlign:"center"}} variant="h4" gutterBottom component="div">
+           All Books List
+        </Typography>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">

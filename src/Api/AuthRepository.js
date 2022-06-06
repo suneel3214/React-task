@@ -67,18 +67,30 @@ class AuthRepository {
           return reponse;
       }
 
-    //   async bookDelete(id) {
-    //       console.log("data",id)
-    //     const reponse = await axios.post(`admin/book/delete/${id}`)
-    //     .then((response) => {
-    //         return response;
-    //     })
-    //     .catch((error) => {
-    //         return error.response;
-    //     });
+      async AddFaculty(params) {
+        const reponse = await axios.post(`admin/add_faculty` ,params)
+        .then((response) => {
+            return response;
+        })
+        .catch((error) => {
+            return error.response;
+        });
 
-    //     return reponse;
-    // }
+        return reponse;
+    }
+
+    async FacultyList() {
+        const data = localStorage.getItem("userId");
+        const reponse = await axios.get(`admin/get_faculty/${data}`)
+        .then((response) => {
+            return response;
+        })
+        .catch((error) => {
+            return error.response;
+        });
+
+        return reponse;
+    }
       
 
 }

@@ -11,6 +11,8 @@ import Book from './components/BookComponent/book';
 import BookListing from './components/BookComponent/bookListing';
 import Login from './components/LoginComponent/login';
 import { initialState , reducer } from './reducer/UseReducer';
+import Faculty from './components/FacultyComponent/faculty';
+import FacultyList from './components/FacultyComponent/facultyList';
 
 export const UserContext = createContext();
 
@@ -30,6 +32,8 @@ const App = () => {
               <Route exact path="/book_register"><Book /></Route>
               <Route exact path="/login"><Login /></Route>
               <Route exact path="/book_listing"><BookListing /></Route>
+              <Route exact path="/facutly"><Faculty /></Route>
+              <Route exact path="/facutly_list"><FacultyList /></Route>
             </Switch>
          </Router>
     </UserContext.Provider>

@@ -46,92 +46,91 @@ export default function book() {
     // console.log(UserId);
   return (
     <>
-    <Row justify="center">
-      <Col span={16}>
-        <Typography  variant="h4" gutterBottom component="div">
+    <Row>
+      <Col span={12}>
+        <Typography style={{marginTop:"40px",textAlign:"center"}} variant="h4" gutterBottom component="div">
         Book Created Form
         </Typography>
           <Form
-                      form={form}
-                      name="basic"
-                      labelCol={{ span: 4 }}
-                      wrapperCol={{ span: 8 }}
-                      initialValues={{ remember: true }}
-                      onFinish={onFinish}
-                      autoComplete="off"
-                      layout="vertical" 
+              style={{margin:"0px 80px"}}
+              form={form}
+              name="basic"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              autoComplete="off"
+              layout="vertical" 
+            >
+
+              <Form.Item
+                label="Title"
+                name="title"
+                className='lebal'
+                rules={[{ required: true, message: 'title!' }]}
+              >
+                <Input placeholder="Title" name="title"/>
+              </Form.Item>
+              <Form.Item
+                label="SubTitle"
+                name="subtitle"
+                className='lebal'
+                rules={[{ required: true, message: 'subtitle!' }]}
+              >
+                <Input  placeholder="subtitle" name="subtitle"/>
+              </Form.Item>
+
+              <Form.Item
+                label="Authors"
+                name="authors"
+                className='lebal'
+                rules={[{ required: true, message: 'authors!' }]}
+              >
+                <Input name="authors" placeholder="authors"/>
+              </Form.Item>
+              <Row gutter={16}>
+                <Col span={10.5}>
+                  <Form.Item
+                  label="Small_thumbnail"
+                  name="small_thumbnail"
+                  className='lebal'
+                  rules={[{ required: true, message: 'small_thumbnail!' }]}
+                  >
+                    <Upload 
+                    type="file"
+                    name="small_thumbnail"
+                    onChange={(event) => uploadFile(event.file.originFileObj,'first') }
                     >
-                    {/* <Form.Item
-                        label="User ID"
-                        name="user_id"
-                        className='lebal'
-                        rules={[{ required: true, message: 'title!' }]}
-                        
-                      >
-                        <Input placeholder="" type='text' defaultValue={UserId} name="user_id"/>
-                      </Form.Item> */}
-
-                      <Form.Item
-                        label="Title"
-                        name="title"
-                        className='lebal'
-                        rules={[{ required: true, message: 'title!' }]}
-                      >
-                        <Input placeholder="Title" name="title"/>
-                      </Form.Item>
-                      <Form.Item
-                        label="SubTitle"
-                        name="subtitle"
-                        className='lebal'
-                        rules={[{ required: true, message: 'subtitle!' }]}
-                      >
-                        <Input  placeholder="subtitle" name="subtitle"/>
-                      </Form.Item>
-
-                      <Form.Item
-                        label="Authors"
-                        name="authors"
-                        className='lebal'
-                        rules={[{ required: true, message: 'authors!' }]}
-                      >
-                        <Input name="authors" placeholder="authors"/>
-                      </Form.Item>
-
-                      <Form.Item
-                        label="Small_thumbnail"
-                        name="small_thumbnail"
-                        className='lebal'
-                        rules={[{ required: true, message: 'small_thumbnail!' }]}
-                      >
-                      <Upload 
-                        type="file"
-                        name="small_thumbnail"
-                        onChange={(event) => uploadFile(event.file.originFileObj,'first') }
-                        >
-                        <Button icon={<UploadOutlined />}>Click to Upload</Button>
-                        </Upload>
-                      </Form.Item>
-
-                      <Form.Item
-                        label="Thumbnail"
-                        name="thumbnail"
-                        className='lebal'
-                        rules={[{ required: true, message: 'thumbnail!' }]}
-                      >
-                      <Upload 
-                        type="file"
-                        name="thumbnail"
-                        onChange={(event) => uploadFile(event.file.originFileObj,'second') }
-                        >
-                        <Button icon={<UploadOutlined />}>Click to Upload</Button>
-                        </Upload>
-                      </Form.Item>
-                      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <Button type="primary" variant="contained"  color="secondary" htmlType="submit">
-                          Create
-                        </Button>
-                      </Form.Item>
+                    <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                    </Upload>
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    label="Thumbnail"
+                    name="thumbnail"
+                    className='lebal'
+                    rules={[{ required: true, message: 'thumbnail!' }]}
+                    >
+                    <Upload 
+                    type="file"
+                    name="thumbnail"
+                    onChange={(event) => uploadFile(event.file.originFileObj,'second') }
+                    >
+                    <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                    </Upload>
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Button type="primary" variant="contained"  color="secondary" htmlType="submit">
+                  Create
+                </Button>
+              </Form.Item>
           </Form>
+      </Col>
+      <Col span={12}>
+      <img className='book-img' src="https://img.freepik.com/free-psd/banner-bookstore-ad-template_23-2148680419.jpg?w=2000" alt="" />
       </Col>
     </Row>
     </>

@@ -2,7 +2,7 @@ import AuthRepository from '../Api/AuthRepository';
 import cookies from "js-cookie";
 
 import React,{useContext, useState} from 'react';
-import { notification} from "antd";
+import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import { useHistory } from 'react-router-dom';
 import {UserContext} from '../App';
@@ -40,7 +40,6 @@ export default function useAuth() {
 
         var responseData = await AuthRepository.UserLogin(data);
          var error = responseData.data.error;
-         console.log("error",error)
         if (responseData.status === 200) {
           notification.open({
             message: "Success",
@@ -50,7 +49,7 @@ export default function useAuth() {
           cookies.set('token', responseData.data.token)
           localStorage.setItem("userId", responseData.data.user.id);
           dispatch({type:"USER", payload:true})
-          history.push('/');
+          history.push('/book_listing');
           return  responseData.data;
 
           }
@@ -58,7 +57,7 @@ export default function useAuth() {
           else {
             notification.open({
               message: "Warning",
-              description: error,
+              description: "Login Failed...!!",
               icon: <SmileOutlined style={{ color: "#108ee9" }} />,
             });
             history.push('/login');
@@ -122,29 +121,35 @@ export default function useAuth() {
             }
         },
 
-        // getBookDelete: async (data) => {
-        //        console.log('data',data)
-        //   var responseData = await AuthRepository.bookDelete(data);
-        //        console.log(responseData);
-        //   if (responseData.status === 200) {             
+        getFacultyAdd: async (data) => {
+          var responseData = await AuthRepository.AddFaculty(data);
+          if (responseData.status === 200) {             
 
-        //       notification.open({
-        //         message: "Deleted",
-        //         description: "Book Deleted SuccessFully...!!",
-        //         icon: <SmileOutlined style={{ color: "#108ee9" }} />,
-        //       });
-        //         history.push('/book_listing');
-        //       return true
-        //     } else{
-        //       notification.open({
-        //         message: "Error",
-        //         description: "Failed...!",
-        //         icon: <SmileOutlined style={{ color: "#108ee9" }} />,
-        //       });
-        //        history.push('/book_listing');
-        //       return false
-        //     }
-        // },
+              notification.open({
+                message: "Created",
+                description: "Faculty Created SuccessFully...!!",
+                icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+              });
+                history.push('/facutly_list');
+              return true
+            } else{
+              notification.open({
+                message: "Error",
+                description: "Failed...!",
+                icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+              });
+               history.push('/facutly');
+              return false
+            }
+        },
+
+        getFacultyListing: async (data) => {
+          var responseData = await AuthRepository.FacultyList(data);
+          if(responseData.status == 200){
+            return responseData.data;
+          }
+          return false;
+        },
    }
         
   }
